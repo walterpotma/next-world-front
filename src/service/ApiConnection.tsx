@@ -12,4 +12,12 @@ export class HqService {
     static GetAllHqs(){
         return axiosInstance.get(`/Hq/ListAllHqs/`);
     }
+    static GetHqById(id: number){
+        return axiosInstance.get(`/Hq/ListHqById?id=${id}`);
+    }
+}
+export class CapService {
+    static GetRecentsCaps(){
+        return axiosInstance.get(`/Capitulos/listRecentsCaps/`);
+    }
 }
