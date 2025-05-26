@@ -18,7 +18,7 @@ export default function Page() {
             <div className="min-w-40 flex justify-end items-center">
                 <AlignJustify onClick={() => setOpenMenu(!openMenu)} className=" cursor-pointer"/>
             </div>
-            <nav className={`bg-black border-l border-green-800 h-screen flex flex-col justify-between fixed top-0 right-0 ${openMenu ? "w-76" : "w-0 overflow-hidden"} transition-all duration-300`}>
+            <nav className={`bg-black border-l border-green-800 h-screen flex flex-col justify-between fixed top-0 right-0 ${openMenu ? "w-76" : "w-0 overflow-hidden"} transition-all duration-300 z-30`}>
                 <div className="">
                     <button onClick={() => setOpenMenu(false)} className="p-2 flex cursor-pointer hover:text-green-300">
                         <PanelRightClose className="mr-1"/> Fechar

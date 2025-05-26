@@ -45,7 +45,7 @@ export default function Page() {
                                 <div className="flex">
                                     <img src={hq.capa} className="w-44 mr-6" />
                                     <div className="w-full flex flex-col">
-                                        <h1 className="w-full text-2xl text-slate-300">{hq.nome} - {cap.numero_cap}</h1>
+                                        <h1 className="w-full text-2xl text-slate-300">{hq.nome} - Capitulo {cap.numero_cap}</h1>
                                         <div className="flex flex-wrap gap-1">
                                             {hq.generos.map((genero, i) => (
                                                 <button key={i} className="py-0.5 px-1.5 text-[12px] text-emerald-700 border border-emerald-900 rounded-md">
@@ -66,4 +66,8 @@ export default function Page() {
             </div>
         </div>
     )
+}
+
+function useSearch(): { setSearchQuery: any; searchQuery: any; } {
+    throw new Error("Function not implemented.");
 }

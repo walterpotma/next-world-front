@@ -2,7 +2,8 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: "https://next-world-api.onrender.com/api/",
+  //baseURL: "https://next-world-api.onrender.com/api/",
+  baseURL: "https://localhost:7295/api/",
   headers: {
     "Content-Type": "application/json",
   }
@@ -19,5 +20,8 @@ export class HqService {
 export class CapService {
     static GetRecentsCaps(){
         return axiosInstance.get(`/Capitulos/listRecentsCaps/`);
+    }
+    static GetViewCaps(){
+        return axiosInstance.get(`/Capitulos/ListViewCaps`)
     }
 }
