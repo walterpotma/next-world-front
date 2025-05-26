@@ -16,6 +16,9 @@ export class HqService {
     static GetHqById(id: number){
         return axiosInstance.get(`/Hq/ListHqById?id=${id}`);
     }
+    static GetHqFinalizado(){
+        return axiosInstance.get(`/Hq/ListHqByStatus?status=finalizado`)
+    }
 }
 export class CapService {
     static GetRecentsCaps(){
@@ -23,5 +26,8 @@ export class CapService {
     }
     static GetViewCaps(){
         return axiosInstance.get(`/Capitulos/ListViewCaps`)
+    }
+    static GetCapByHqId(id: number){
+        return axiosInstance.get(`/Capitulos/ListCapByIdHq?hq_id=${id}`)
     }
 }
