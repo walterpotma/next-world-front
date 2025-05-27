@@ -1,11 +1,13 @@
 "use client"
 import { CapService, HqService } from "@/service/ApiConnection"
 import { Caps, Hqs } from "@/service/DataContext"
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export default function Page() {
     const [hqs, setHqs] = useState<Hqs[]>([])
     const [capsPorHq, setCapsPorHq] = useState<{ [key: number]: Caps[] }>({})
+    const router = useRouter();
 
     useEffect(() => {
         HqService.GetHqFinalizado()
@@ -30,12 +32,22 @@ export default function Page() {
         }
     }
 
+    const handleHq = async(hq: Hqs) => {
+        try{
+            localStorage.setItem('idHq', hq.id.toString());
+            router.push('/hq');
+        }
+        catch(error) {
+            console.log("error ao tentar selecionar a hq");
+        }
+    }
+
     return (
         <div className="w-full">
             <div className="w-2xl p-4 bg-black rounded-2xl my-6 mx-4">
                 <h1 className="w-full mb-6 flex justify-center text-slate-300 text-3xl">Historias Finalizadas</h1>
                 {hqs.map((hq, index) => (
-                    <div key={index} className={`p-4 relative w-full overflow-hidden rounded-lg ${index === 0 ? "border-0" : "border-t border-gray-700"}`}>
+                    <div key={index} onClick={() => handleHq(hq)} className={`p-4 relative w-full overflow-hidden rounded-lg ${index === 0 ? "border-0" : "border-t border-gray-700"} cursor-pointer`}>
                         <div className="relative h-80 overflow-hidden">
                             <img src={hq.banner} alt="" className="absolute inset-0 w-full h-full object-cover z-0" />
                             <div className="absolute inset-0 bg-black/50 z-10" />

@@ -1,13 +1,28 @@
 "use client"
 import { AlignJustify, BookOpen, Contact, DoorOpen, HouseIcon, Info, PanelRightClose, Search, UserCircle } from "lucide-react"
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 export default function Page() {
     const [openMenu, setOpenMenu] = useState(false);
+    const router = useRouter();
+
+    const handleHome = async() => {
+        router.push('/');
+    }
+    const handleHqs = async() => {
+        router.push('/hqs');
+    }
+    const handleInfo = async() => {
+        router.push('/info');
+    }
+    const handleProfile = async() => {
+        router.push('/profile');
+    }
 
     return (
         <div className="w-full px-4 py-2 flex justify-between">
-            <div className="flex justify-start items-center min-w-40">
+            <div onClick={handleHome} className="flex justify-start items-center min-w-40 cursor-pointer">
                 <img src="/logo_nw.png" alt="" className="w-12 " />
                 <h1 className="text-2xl italic font-bold text-[#61bc84] translate-y-1">NW-Comics</h1>
             </div>
@@ -24,7 +39,7 @@ export default function Page() {
                         <PanelRightClose className="mr-1" /> Fechar
                     </button>
                     <div className="relative group">
-                        <button className="w-full px-6 py-3 ml-5 rounded-l-2xl group-hover:bg-emerald-600 hover:text-black font-bold flex justify-start items-center cursor-pointer">
+                        <button onClick={handleHome} className="w-full px-6 py-3 ml-5 rounded-l-2xl group-hover:bg-emerald-600 hover:text-black font-bold flex justify-start items-center cursor-pointer">
                             <HouseIcon className="mr-2"/>
                             Inicio
                         </button>

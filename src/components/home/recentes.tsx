@@ -1,12 +1,14 @@
 "use client"
 import { CapService, HqService } from "@/service/ApiConnection";
 import { Caps, Hqs } from "@/service/DataContext";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page() {
     const [hqs, setHqs] = useState<Hqs[]>([]);
     const [caps, setCaps] = useState<Caps[]>([]);
     const [hqsCarregadas, setHqsCarregadas] = useState<{ [key: number]: Hqs }>({});
+    const router = useRouter();
 
     useEffect(() => {
         CapService.GetRecentsCaps()
@@ -31,6 +33,16 @@ export default function Page() {
         }
     };
 
+    const handleCapitulo = async(capitulo: Caps) => {
+        try{
+            localStorage.setItem('idCap', capitulo.id.toString());
+            router.push('/capitulo');
+        }
+        catch(error) {
+            console.log("error ao tentar selecionar o capitulo");
+        }
+    }
+
 
     return (
         <div className="w-full flex justify-end">
@@ -42,7 +54,7 @@ export default function Page() {
                     return (
                         <div key={index} className={`w-full flex p-3 ${index === 0 ? "border-t-0" : "border-t border-gray-700"}`}>
                             {hq ? (
-                                <div className="flex">
+                                <div onClick={() => handleCapitulo(cap)} className="flex cursor-pointer">
                                     <img src={hq.capa} className="w-44 mr-6" />
                                     <div className="w-full flex flex-col">
                                         <h1 className="w-full text-2xl text-slate-300">{hq.nome} - Capitulo {cap.numero_cap}</h1>

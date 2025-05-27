@@ -20,3 +20,10 @@ export interface Caps {
     nota: number;
     created_at: string;
 }
+export interface Pagina {
+    id: number;
+    capitulo_id: number;
+    numero_page: number;
+    imagem: string;
+    created_at: string;
+}

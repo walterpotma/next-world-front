@@ -4,10 +4,12 @@ import { Caps, Hqs } from "@/service/DataContext";
 import { useEffect, useState, useRef } from "react";
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
     const [caps, setCaps] = useState<Caps[]>([]);
     const [hqsCarregadas, setHqsCarregadas] = useState<{ [key: number]: Hqs }>({});
+    const router = useRouter();
 
     const [sliderRef, instanceRef] = useKeenSlider({
         loop: true,
@@ -80,6 +82,16 @@ export default function Page() {
         });
     }, [caps]);
 
+    const handleCapitulo = async(capitulo: Caps) => {
+        try{
+            localStorage.setItem('idCap', capitulo.id.toString());
+            router.push('/capitulo')
+        }
+        catch(error) {
+            console.log("error ao tentar selecionar o capitulo");
+        }
+    }
+
     if (caps.length === 0 || caps.some(cap => !hqsCarregadas[cap.hq_id])) {
         return <div className="w-[99,9%] h-[500px] bg-white/10 rounded-2xl border border-white/50 m-10 flex justify-center items-center">Carregando capítulos...</div>;
     }
@@ -90,7 +102,7 @@ export default function Page() {
                 {caps.map((cap, index) => {
                     const hq = hqsCarregadas[cap.hq_id];
                     return (
-                        <div key={index} className="keen-slider__slide w-full h-full flex items-center justify-center">
+                        <div key={index} onClick={() => handleCapitulo(cap)} className="keen-slider__slide w-full h-full flex items-center justify-center cursor-pointer">
                             <div className="relative w-full h-full rounded shadow">
                                 <div className="bg-[#00000085] absolute inset-0 w-full h-full rounded z-10"></div>
                                 <img

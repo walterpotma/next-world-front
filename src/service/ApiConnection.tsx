@@ -30,4 +30,16 @@ export class CapService {
     static GetCapByHqId(id: number){
         return axiosInstance.get(`/Capitulos/ListCapByIdHq?hq_id=${id}`)
     }
+    static GetCapById(id: number){
+        return axiosInstance.get(`/Capitulos/ListCapById?id=${id}`)
+    }
+    static GetAllCapsByHq(id: number){
+        return axiosInstance.get(`/Capitulos/ListCapByIdHq?hq_id=${id}`)
+    }
+}
+
+export class PageService {
+    static GetPageByCapId(cap_id: number){
+        return axiosInstance.get(`/Paginas/ListPageByCapId?id=${cap_id}`)
+    }
 }
