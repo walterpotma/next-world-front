@@ -7,8 +7,6 @@ import { ArrowUp } from "lucide-react";
 export default function Page(){
     return(
         <div>
-            <p id="header"></p>
-            <Header/>
             <Nav/>
             <Paginas/>
             <Nav/>

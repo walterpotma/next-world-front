@@ -20,6 +20,13 @@ export default function Page() {
 
     useEffect(() => {
         if (capId === null) return;
+        const storedCaps = localStorage.getItem('ReadCaps');
+        let readCaps: number[] = storedCaps ? JSON.parse(storedCaps) : [];
+
+        if (!readCaps.includes(capId)) {
+            readCaps.push(capId);
+            localStorage.setItem('ReadCaps', JSON.stringify(readCaps));
+        }
 
         const fetchCap = async () => {
             try {
